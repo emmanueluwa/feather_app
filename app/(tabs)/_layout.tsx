@@ -1,35 +1,64 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function Layout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
+    <Tabs>
       <Tabs.Screen
-        name="index"
+        name="profile"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          title: "Profiles",
+          headerShown: false,
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <Feather name="eye" size={24} color="black" />
+            ) : (
+              <Feather name="eye" size={24} color="gray" />
+            ),
         }}
       />
+
       <Tabs.Screen
-        name="explore"
+        name="chat"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
+          title: "Chat",
+          headerShown: false,
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <Ionicons
+                name="chatbubble-ellipses-outline"
+                size={24}
+                color="black"
+              />
+            ) : (
+              <Ionicons
+                name="chatbubble-ellipses-outline"
+                size={24}
+                color="gray"
+              />
+            ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="bio"
+        options={{
+          title: "Account",
+          headerShown: false,
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <MaterialCommunityIcons
+                name="guy-fawkes-mask"
+                size={24}
+                color="black"
+              />
+            ) : (
+              <MaterialCommunityIcons
+                name="guy-fawkes-mask"
+                size={24}
+                color="gray"
+              />
+            ),
         }}
       />
     </Tabs>
